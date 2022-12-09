@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Welcome{% endblock %}
+{% block head %}
+<link href="/static/css/style.css" rel="stylesheet">
+<style>
+
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        Welcome
+    </div>
+    <div class="row">
+        Melon Tasting Reservations
+    </div>
+    <div class="row">
+        by UberMelon
+    </div>
+
+    {% if 'user_id' in session %}
+        <form action="/logout">
+            <input type="image" src="/static/img/buttons/log-out-2.png" alt="Log Out" id="log-out" width="130" height="69"/>
+        </form>
+    {% else %}
+        <form action="/login">
+            <input type="image" src="/static/img/buttons/log-in-2.png" alt="Log In" id="log-in" width="130" height="69"/>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}
