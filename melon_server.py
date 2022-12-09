@@ -1,6 +1,6 @@
 """Server for the Melon Tasting Reservations App"""
 from flask import (Flask, render_template, request, flash, session,
-                   redirect, jsonify)
+                   redirect)
 from model import connect_to_db, db
 import crud
 from jinja2 import StrictUndefined
@@ -56,3 +56,11 @@ def logout_user():
     flash("See you next time! 🍉")
 
     return redirect("/login")
+
+
+
+###-----------------------------OTHER-STUFF----------------------------###
+
+if __name__ == "__main__":
+    connect_to_db(app)
+    app.run(host="0.0.0.0")   

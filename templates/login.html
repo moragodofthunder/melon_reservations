@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Sign Up | Log In{% endblock %}
+{% block head %}<link rel="stylesheet" href="/static/css/style.css">
+{% endblock %}
+
+{% block body %}
+<!-- START BODY/FLUID CONTAINER -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <form action="/user_profile" method="POST">
+                <p>
+                Email <input type="text" name="email">
+                </p>
+            
+                <p>
+                Password <input type="password" name="password">
+                </p>
+            </form>
+        </div>
+        <div class="col">
+            <form action="/login" method="POST">
+                <p>
+                    Username <input type="text" name="email">
+                </p>
+        
+                <p>
+                    Password <input type="password" name="password">
+                </p>
+        
+                <p>
+                    <input type="submit" value="Let's Go">
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
