@@ -57,7 +57,39 @@ def logout_user():
 
     return redirect("/login")
 
+###----------------------------ADDING-NEW-USER-TO-DB-------------------------###
+@app.route('/user_profile', methods=['POST'])
+def create_new_user():
+    """Create new user account"""
 
+    username = request.form.get("username")
+    password = request.form.get("password")
+
+    user = crud.get_user_by_email(username)
+
+    if user:
+        flash("An account with this email already exists.")
+    else:
+        user = crud.create_user(username, password)
+        db.session.add(user)
+        db.session.commit()
+        flash("Account created successfully. Please log in.")
+    
+        return redirect("/login")
+
+###----------------------------USER-PROFILE-----------------------------###
+@app.route('/reserve')
+def show_user_profile():
+    """Return render template to reserve.html"""
+
+    if "user_id" in session:
+        user = crud.get_user_by_id(session["user_id"])
+
+        return render_template('reserve.html', user=user)
+
+    else:
+        flash("Please log in or create new account.")
+        return redirect("/login")
 
 ###-----------------------------OTHER-STUFF----------------------------###
 
